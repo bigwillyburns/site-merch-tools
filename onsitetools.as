@@ -8,9 +8,9 @@
 // @include http://staging-ugp.ae.com/*/*
 // @include https://sit.aezone.com/*/*
 // @include https://sit-stable.aezone.com/*/*
-// @downloadURL https://code.ae.com/projects/COM/repos/site-merchandising-tools/raw/showCC_UGP.user.js?at=refs%2Fheads%2Fmaster
+// @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.as
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version     2.15.2
+// @version     2.15.3
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
