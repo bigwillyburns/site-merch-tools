@@ -8,9 +8,9 @@
 // @include http://staging-ugp.ae.com/*/*
 // @include https://sit.aezone.com/*/*
 // @include https://sit-stable.aezone.com/*/*
-// @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.as
+// @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version     2.15.4
+// @version     2.15.5
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
@@ -18,8 +18,8 @@ var allCCsUnique = new Array();
 function showAllCCOnPage (){
 run=5;
 CCOnPage();
-    $(".results-list").append("<div class='CCNumber'id='allCC' style='z-index:3000;width: 90%;overflow-wrap: break-word;'>"+allCCsUnique+"</div>");
-    $(".product-list").append("<div class='CCNumber'id='allCC' style='z-index:3000;width: 90%;overflow-wrap: break-word;'>"+allCCsUnique+"</div>");
+    $(".qa-search-results-page").append("<div class='CCNumber'id='allCC' style='z-index:3000;width: 90%;overflow-wrap: break-word;'>"+allCCsUnique+"</div>");
+    $(".bottom-content").append("<div class='CCNumber'id='allCC' style='z-index:3000;width: 90%;overflow-wrap: break-word;'>"+allCCsUnique+"</div>");
 };
 function setClickEvents(){
 $('.imageInspector').click(function(){
