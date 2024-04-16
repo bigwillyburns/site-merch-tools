@@ -10,7 +10,7 @@
 // @include https://sit-stable.aezone.com/*/*
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version     2.15.5
+// @version     2.15.6
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
@@ -115,9 +115,9 @@ for ( i = 0; i < prodIDs.length; i++) {
             para.appendChild(node);
             inLoc[i].appendChild(para);
             $(inLoc[i]).prepend(imageGrid);
-            var imageHTML ='<div class="imageInspector CCNumber"id="II_'+ID+'"style="position: absolute; padding:7px; margin: -2px 0 0 0; z-index: 52;"><img width="20px"src="https://visualsitemerch.web.app/images/image_icon.png"></div>';
+            var imageHTML ='<div class="imageInspector CCNumber"id="II_'+ID+'"style="position: absolute; padding:7px; margin: 17px 0 0 0; z-index: 52;"><img width="20px"src="https://visualsitemerch.web.app/images/image_icon.png"></div>';
             $(inLoc[i]).prepend(imageHTML);
-            $(inLoc[i]).prepend("<div class='showInv CCNumber'id='IS_"+ID+"' style='position: absolute; padding:5px; margin: -2px 0 0 32px; z-index: 52;'><img width='28px'src='https://visualsitemerch.web.app/images/instock.png'></div>");
+            $(inLoc[i]).prepend("<div class='showInv CCNumber'id='IS_"+ID+"' style='position: absolute; padding:5px; margin: 15px 0 0 32px; z-index: 52;'><img width='28px'src='https://visualsitemerch.web.app/images/instock.png'></div>");
 
 
         }
