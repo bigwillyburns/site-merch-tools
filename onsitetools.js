@@ -8,6 +8,7 @@
 // @include http://staging-ugp.ae.com/*/*
 // @include https://sit.aezone.com/*/*
 // @include https://sit-stable.aezone.com/*/*
+// @updateURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
 // @version 2.17
