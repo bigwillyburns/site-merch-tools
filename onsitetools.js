@@ -10,7 +10,7 @@
 // @include https://sit-stable.aezone.com/*/*
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version     2.15.6
+// @version 2.16
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
