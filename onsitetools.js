@@ -11,7 +11,7 @@
 // @updateURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version 2.17
+// @version 2.17.1
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
@@ -75,35 +75,25 @@ $('.showInv').click(function(){
     });
 }
 function CCOnPage(){
+console.log("CCOnPage Ran");
 if (run > 5){}
 else{
 $(".CCNumber").remove();
 //Start by getting all Product IDs on the page and put them into Array
 var imageSRC = $(".tile-link");
-var inLoc = document.getElementsByClassName("product-tile qa-product-tile");
+var inLoc = document.getElementsByClassName("product-tile");
 var arrID = new Array();
 var uarrID = new Array();
 var prodIDs = new Array();
 
-/*
-        for (var i = 0; i < imageSRC.length; i++) {
-            var hrefImage = imageSRC[i].getAttribute("href");
-            var N = hrefImage.indexOf("?");
-            hrefImage = hrefImage.substring(N-13,N);
-            arrID.push(hrefImage);
-        }
-uarrID = arrID.filter(function(itm, i, a) {
-    return i == a.indexOf(itm);
-});*/
-//prodIDs=$(".qa-product-tile").data("productId");
-$(".qa-product-tile").each(function() {
+$(".product-tile").each(function() {
   var i;
   i = $(this).data("productId");
   prodIDs.push(i)
 });
 
 //Create a DIV that gets inserted
-for ( i = 0; i < prodIDs.length; i++) {
+for ( var i = 0; i < prodIDs.length; i++) {
             var ID = prodIDs[i];
             var node = document.createTextNode(ID);
             var para = document.createElement("div");
