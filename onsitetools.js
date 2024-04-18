@@ -11,7 +11,7 @@
 // @updateURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version 2.17.1
+// @version 2.17.2
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
@@ -19,8 +19,11 @@ var allCCsUnique = new Array();
 function showAllCCOnPage (){
 run=5;
 CCOnPage();
-    $(".qa-search-results-page").append("<div class='CCNumber'id='allCC' style='z-index:3000;width: 90%;overflow-wrap: break-word;'>"+allCCsUnique+"</div>");
-    $(".bottom-content").append("<div class='CCNumber'id='allCC' style='z-index:3000;width: 90%;overflow-wrap: break-word;'>"+allCCsUnique+"</div>");
+         navigator.clipboard.writeText(allCCsUnique).then(function () {
+             alert(''+allCCsUnique.length+' Products copied to your Clipboard')
+         }, function () {
+             alert('OOOPS it Failed to copy to Clipboard')
+         });
 };
 function setClickEvents(){
 $('.imageInspector').click(function(){
@@ -75,7 +78,6 @@ $('.showInv').click(function(){
     });
 }
 function CCOnPage(){
-console.log("CCOnPage Ran");
 if (run > 5){}
 else{
 $(".CCNumber").remove();
@@ -112,17 +114,18 @@ for ( var i = 0; i < prodIDs.length; i++) {
 
 
         }
-//END FUNCTIONS
 
 //CC Button at bottom
-$('.results-list').append("<div class='CCNumber'><button id='ccbutton' style='background-color: #555555;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Show All CCs</button> <h3>Total CCs "+prodIDs.length+"</h3></div>");
-$('.product-list').append("<div class='CCNumber'><button id='ccbutton' style='background-color: #555555;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Show All CCs</button> <h3>Total CCs "+prodIDs.length+"</h3></div>");
-$('#ccbutton').click(function(){showAllCCOnPage()});
-setClickEvents();
-run++;
-allCCsUnique = prodIDs;
-return prodIDs
+    $('.results-list').append("<div class='CCNumber'><button id='ccbutton' style='background-color: #555555;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Show All CCs</button> <h3>Total CCs "+prodIDs.length+"</h3></div>");
+    $('.product-list').append("<div class='CCNumber'><button id='ccbutton' style='background-color: #555555;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'>Show All CCs</button> <h3>Total CCs "+prodIDs.length+"</h3></div>");
+
+    $('#ccbutton').click(function(){showAllCCOnPage()});
+    setClickEvents();
+    run++;
+    allCCsUnique = prodIDs;
+    return prodIDs
 }}
+//END FUNCTIONS
 
 setTimeout(function(){
 //var TLTUIDloc = document.cookie;
