@@ -11,7 +11,7 @@
 // @updateURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version 2.17.2
+// @version 2.18.2
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
@@ -33,7 +33,7 @@ $('.imageInspector').click(function(){
         $("#GMimageGrid_"+ID+"").remove();
     }
     else{
-        var insertImages ='<div class="CCNumber" id="GMimageGrid_'+ID+'" style="position:absolute;background-color:white;font-size:12px;z-index:55;left:14px;top:40px;width:310px;"><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_f?size=88,88&cropN=0,0,1,1">_f</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_b?size=88,88&cropN=0,0,1,1">_b</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_of?size=88,88&cropN=0,0,1,1">_of</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_ob?size=88,88&cropN=0,0,1,1">_ob</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_l1?size=88,88&cropN=0,0,1,1">_l1</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_l2?size=88,88&cropN=0,0,1,1">_l2</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_l3?size=88,88&cropN=0,0,1,1">_l3</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_d1?size=88,88&cropN=0,0,1,1">_d1</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_d2?size=88,88&cropN=0,0,1,1">_d2</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_d3?size=88,88&cropN=0,0,1,1">_d3</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_g1?size=88,88&cropN=0,0,1,1">_g1</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_g2?size=88,88&cropN=0,0,1,1">_g2</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_g3?size=88,88&cropN=0,0,1,1">_g3</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_is?size=88,88&cropN=0,0,1,1">_is</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_os?size=88,88&cropN=0,0,1,1">_os</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_r?size=88,88&cropN=0,0,1,1">_r</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_cb?size=88,88&cropN=0,0,1,1">_cb</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_cd?size=88,88&cropN=0,0,1,1">_cd</div></div>';
+        var insertImages ='<div class="CCNumber" id="GMimageGrid_'+ID+'" style="position:absolute;background-color:white;font-size:12px;z-index:55;left:0px;top:50px;width:327px;height:369px;resize:auto;overflow:auto;"><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_f?size=88,88&cropN=0,0,1,1">_f</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_b?size=88,88&cropN=0,0,1,1">_b</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_of?size=88,88&cropN=0,0,1,1">_of</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_ob?size=88,88&cropN=0,0,1,1">_ob</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_l1?size=88,88&cropN=0,0,1,1">_l1</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_l2?size=88,88&cropN=0,0,1,1">_l2</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_l3?size=88,88&cropN=0,0,1,1">_l3</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_d1?size=88,88&cropN=0,0,1,1">_d1</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_d2?size=88,88&cropN=0,0,1,1">_d2</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_d3?size=88,88&cropN=0,0,1,1">_d3</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_g1?size=88,88&cropN=0,0,1,1">_g1</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_g2?size=88,88&cropN=0,0,1,1">_g2</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_g3?size=88,88&cropN=0,0,1,1">_g3</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_is?size=88,88&cropN=0,0,1,1">_is</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_os?size=88,88&cropN=0,0,1,1">_os</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_r?size=88,88&cropN=0,0,1,1">_r</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_cb?size=88,88&cropN=0,0,1,1">_cb</div><div style="float:left; width:75px;text-align:center;"><img src="https://s7d2.scene7.com/is/image/aeo/'+ID+'_cd?size=88,88&cropN=0,0,1,1">_cd</div></div>';
         $('#grid_'+ID).prepend(insertImages);
     }
 });
@@ -43,7 +43,7 @@ $('.showInv').click(function(){
         $('#stock_'+ID).remove();
     }
     else{
-        $('#'+ID).prepend('<div class="CCNumber" id="stock_'+ID+'" style="position:absolute;background-color:white;font-size:12px;z-index:53;left: 101px;text-align: left;top: 4px;width: 210px;list-style-type: none;cell-padding: 10px;padding: 16px;overflow: hidden;height: 395px;overflow-y: auto;"></div>');
+        $('#'+ID).prepend('<div class="CCNumber" id="stock_'+ID+'" style="position:absolute;background-color:white;font-size:12px;z-index:53;left:0px;text-align: left;top: 50px;width: 327px;list-style-type: none;cell-padding: 10px;padding: 16px;overflow: hidden;height: 369px;overflow-y: auto;resize:auto; opacity: 0.9;"></div>');
         var xmlHttp = new XMLHttpRequest();
           xmlHttp.open( "GET", "https://www.ae.com/ugp-api/catalog/v1/product/sizes?productIds="+ID+"", true );
           xmlHttp.setRequestHeader("X-Access-Token",JSON.parse(localStorage.getItem('aeotoken')).access_token);
@@ -60,15 +60,15 @@ $('.showInv').click(function(){
                 var green = "style='color: darkseagreen;'";
                 var color;
                 var stock
-                if(sku.inventoryStatus == 0){stock="In Stock"; color = green; instock++}
-                else if(sku.inventoryStatus == 1){stock="Low Stock"; color = yellow; lowstock++}
-                else {stock="Out of Stock"; color = red; outofstock++}
-            $('#stock_'+ID).append('<tr '+color+'><td style="padding:5px">'+sku.size+'</td><td style="padding:5px">'+stock+'</tr></tr>');
+                if(sku.inventoryStatus == 0){stock="IS"; color = green; instock++}
+                else if(sku.inventoryStatus == 1){stock="LS"; color = yellow; lowstock++}
+                else {stock="OOS"; color = red; outofstock++}
+            $('#stock_'+ID).append('<tr '+color+'><td style="padding:5px">'+sku.size+'</td><td style="padding:5px">'+stock+'</td><td style="padding:5px">'+sku.skuId+'</td><td style="padding:5px">'+sku.listPrice+'</td><td style="padding:5px">'+sku.salePrice+'</td><td style="padding:5px">'+sku.sizeCode+'</td></tr>');
             })
           totalSKUS = instock+outofstock+lowstock;
           var instockpercentage = Math.round(((instock+lowstock)/totalSKUS)*100);
 //          var inventoryScore = ((100/totalSKUS)*(instock+(lowstock*.5)));
-          $('#stock_'+ID).prepend('<tr><td style="padding:5px">In Stock %</td><td style="padding:5px">'+instockpercentage+'</tr></tr>');
+          $('#stock_'+ID).prepend('<tr><td style="padding:5px">IS%</td><td style="padding:5px">'+instockpercentage+'</td><td style="padding:5px">SKU</td><td style="padding:5px">LP</td><td style="padding:5px">SP</td><td style="padding:5px">SC</td></tr>');
           } else {
             console.log('error')
           }
