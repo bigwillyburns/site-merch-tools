@@ -11,7 +11,7 @@
 // @updateURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version 2.18.2
+// @version 2.18.3
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
@@ -87,13 +87,35 @@ var inLoc = document.getElementsByClassName("product-tile");
 var arrID = new Array();
 var uarrID = new Array();
 var prodIDs = new Array();
+var cleanedArray = []; // New array to hold valid elements
 
+    for (let i = 0; i < inLoc.length; i++) {
+        var el = inLoc[i];
+        var classStr = el.className;
+
+        if (
+            !classStr.includes("marketing-tile") &&
+            !classStr.includes("_item_1c1emu") &&
+            !classStr.includes("_details-margin-bottom") &&
+            !classStr.includes("in-page-marketing-tile")
+        ) {
+            cleanedArray.push(el); // Only include elements that don't match any partial class name
+        }
+    }
+    inLoc = cleanedArray;
 $(".product-tile").each(function() {
-  var i;
-  i = $(this).data("productId");
-  prodIDs.push(i)
-});
+    const classList = $(this).attr("class");
 
+    if (
+        !classList.includes("in-page-marketing-tile") &&
+        !classList.includes("marketing-tile") &&
+        !classList.includes("_item") &&
+        !classList.includes("_details-margin-bottom")
+    ) {
+        const i = $(this).data("productId");
+        prodIDs.push(i);
+    }
+});
 //Create a DIV that gets inserted
 for ( var i = 0; i < prodIDs.length; i++) {
             var ID = prodIDs[i];
@@ -125,19 +147,55 @@ for ( var i = 0; i < prodIDs.length; i++) {
     allCCsUnique = prodIDs;
     return prodIDs
 }}
+function chunkArray(array, chunkSize = 10) {
+    const result = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+        result.push(array.slice(i, i + chunkSize));
+    }
+    return result;
+}
+
 //END FUNCTIONS
 
 setTimeout(function(){
-//var TLTUIDloc = document.cookie;
 var TLTUIDloc = document.cookie.search("TLTUID");
 var TLTUID = document.cookie.substring(TLTUIDloc,39+TLTUIDloc);
-$('.qa-sticky-header-promo').prepend('<div id="myTLTUID" style="position: absolute;padding: 0 123px 0 0;z-index:9999;font-size:11px;">'+TLTUID+'</div>');
+$('.sticky-promo').prepend('<div id="myTLTUID" style="position: absolute;padding: 0 123px 0 0;z-index:9999;font-size:11px;">'+TLTUID+'</div>');
 $('.utilities-list').prepend('<div id="showccbutton" style="padding: 0px 5px 0 0;z-index: 52;margin-top: 4px;"><img width="20px"src="https://visualsitemerch.web.app/images/smtools_icon.png"></div>');
 $('#showccbutton').click(function(){run = 5;CCOnPage()});
 $('.utilities-list').prepend('<div id="productLokkup" style="padding: 0px 9px 0 0;z-index: 52;margin-top: 6px;"><img width="27px"src="https://visualsitemerch.web.app/images/Product_lookup.png"></div>');
+$('.utilities-list').prepend('<div id="invLookup" style="padding: 0px 9px 0 0;z-index: 52;margin-top: 6px; "><img width="22px"src="https://visualsitemerch.web.app/images/percent_icon.png"></div>');
+$('.utilities-list').prepend('<label style="margin: 7px 5px 0 0; position: relative; display: inline-block; width: 30px; height: 17px;"><input id="remove_color" type="checkbox" checked style="opacity: 0; width: 0; height: 0;"><span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #182c51; transition: .4s; border-radius: 17px;"></span><span class="thumb" style="transform: translateX(13px);position: absolute; height: 13px; width: 13px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; z-index: 1;"></span></label>');
+$('#remove_color').on('change', function () {
+  const $track = $(this).siblings('.slider');
+  const $thumb = $(this).siblings('.thumb');
+
+  if (this.checked) {
+    // Toggle "on" styles
+    $track.css('background-color', '#182c51');
+    $thumb.css('transform', 'translateX(13px)');
+
+    // Set opacity to 0.5 for matching divs
+    $('div').each(function () {
+      if ($(this).attr('id')?.includes('_background')) {
+        $(this).css('opacity', '0.5');
+      }
+    });
+  } else {
+    // Toggle "off" styles
+    $track.css('background-color', '#ccc');
+    $thumb.css('transform', 'translateX(0)');
+
+    // Set opacity to 0 for matching divs
+    $('div').each(function () {
+      if ($(this).attr('id')?.includes('_background')) {
+        $(this).css('opacity', '0');
+      }
+    });
+  }
+});
 $('#productLokkup').click(function(){
     var stringOfProducts = prompt("Please paste in your CCs");
-//    stringOfProducts =  stringOfProducts.replace(/(\r\n|\n|\r)/gm,",");
     stringOfProducts =  stringOfProducts.replace(/ /g,',');
     var productsSearched = new Array;
     productsSearched = stringOfProducts.split(",");
@@ -149,7 +207,7 @@ $('#productLokkup').click(function(){
         var data = JSON.parse(this.response)
         if (xmlHttp.status >= 200 && xmlHttp.status < 400) {
             //set product container
-            $('#main-header').prepend('<div id="product_grid"style="padding-bottom: 60px;top: 84px;position: absolute;width: 900px;background-color: whitesmoke;left: 0;right: 0;margin-left: auto;margin-right: auto;z-index: 53;height: 800px;overflow: hidden;overflow-y: auto;padding-top: 85px;"><div id="productGridHeader"style="position: absolute;width: 307px;font-size: xx-large;left: 0;right: 0;margin-left: auto;margin-right: auto;margin-top: -70px;">AEO Product Lookup</div><div id="CC_close" style="position: absolute;margin: -76px 0 0 7px;"><img src="https://visualsitemerch.web.app/images/close.png"</div></div>')
+            $('#main-header').prepend('<div id="product_grid"style="padding-bottom: 60px;top: 84px;position: absolute;width: 900px;background-color: whitesmoke;left: 0;right: 0;margin-left: auto;margin-right: auto;z-index: 53;height: 800px;overflow: hidden;overflow-y: auto;padding-top: 85px;"><div id="productGridHeader"style="position: absolute;width: 315px;font-size: xx-large;left: 0;right: 0;margin-left: auto;margin-right: auto;margin-top: -70px;">AEO Product Lookup</div><div id="CC_close" style="position: absolute;margin: -76px 0 0 7px;"><img src="https://visualsitemerch.web.app/images/close.png"</div></div>')
             $('#CC_close').click(function(){$('#product_grid').remove()});
             var productsFound = new Array;
             //Looping through the Products
@@ -195,5 +253,99 @@ $('#productLokkup').click(function(){
         })
     }
     xmlHttp.send(null);
+});
+// ################################################################### NEW INVENTORY LOOKUP ########################################################################
+$('#invLookup').click(function(){
+    // Get the Product IDs
+    $(".CC_Remove").remove();
+    var prodIDs = new Array();
+    var inLoc = document.getElementsByClassName("product-tile");
+    var cleanedArray = []; // New array to hold valid elements
+    var loopcount = 0;
+    var bg_color = "darkseagreen";
+    for (let i = 0; i < inLoc.length; i++) {
+        var el = inLoc[i];
+        var classStr = el.className;
+
+        if (
+            !classStr.includes("marketing-tile") &&
+            !classStr.includes("_item_1c1emu") &&
+            !classStr.includes("_details-margin-bottom") &&
+            !classStr.includes("in-page-marketing-tile")
+        ) {
+            cleanedArray.push(el); // Only include elements that don't match any partial class name
+        }
+    }
+    inLoc = cleanedArray;
+$(".product-tile").each(function() {
+    const classList = $(this).attr("class");
+
+    if (
+        !classList.includes("in-page-marketing-tile") &&
+        !classList.includes("marketing-tile") &&
+        !classList.includes("_item") &&
+        !classList.includes("_details-margin-bottom")
+    ) {
+        const i = $(this).data("productId");
+        prodIDs.push(i);
+    }
+});
+    var prodIDs_Chunks = chunkArray(prodIDs);
+    console.log(prodIDs_Chunks);
+    console.log(inLoc);
+    for (let i = 0; i < prodIDs_Chunks.length; i++) {
+        setTimeout(() => {
+    //Start product loop
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://www.ae.com/ugp-api/catalog/v1/product/sizes?productIds="+prodIDs_Chunks[i]+"", true );
+    xmlHttp.setRequestHeader("X-Access-Token",JSON.parse(localStorage.getItem('aeotoken')).access_token);
+    xmlHttp.onload = function() {
+        var data = JSON.parse(this.response)
+        if (xmlHttp.status >= 200 && xmlHttp.status < 400) {
+            var productsFound = new Array;
+            //Looping through the Products
+            if (data.data.records){
+            data.data.records.forEach(records => {
+            var lowStock = 0
+            var inStock = 0
+            var noStock = 0
+            var totalSkus = 0
+            var productinstock
+            productsFound.push(records.sizes.productId);
+                // Looping through the SKUS
+                records.sizes.skus.forEach(sku => {
+                  if (sku.inventoryStatus == 0){
+                     inStock++
+                     totalSkus++
+                  }
+                  else if (sku.inventoryStatus == 1){
+                     totalSkus++
+                     lowStock++
+                  }
+                  else {
+                     totalSkus++
+                     noStock++
+                  }
+                })
+             if (totalSkus == noStock){productinstock = "Out of Stock"}
+             else{productinstock = "In Stock"}
+             var inStockPercentage = Math.round(((lowStock+inStock)/totalSkus)*100);
+                if(inStockPercentage <= 33){bg_color="maroon"}
+                else if(inStockPercentage >= 34 && inStockPercentage <= 66){bg_color="goldenrod"}
+                else{bg_color="darkseagreen"}
+            $(inLoc[loopcount]).prepend('<div id="CC_'+records.sizes.productId+'_background" class="CC_Remove" style="position: absolute;width: 327px;height: 418px;z-index:10;margin: 0 0 0 0;background-color: '+bg_color+';opacity: .5;"></div><div id="CC_'+records.sizes.productId+'_container" class="CC_Remove" style="position: absolute;width: 327px;height: 418px;z-index:10;margin: -14px 0 0 0;"><div id="CC_'+records.sizes.productId+'" style="text-align: center;">'+records.sizes.productId+'</div><div id="CC_'+records.sizes.productId+'_percent" style="position: relative;float: right;font-size: xxx-large;-webkit-text-stroke-color: white;-webkit-text-stroke-width: 1px;margin: 0 5px 0 0;">'+inStockPercentage+'%</div></div>')
+             loopcount++;
+             console.log(loopcount);
+              //end of loop for records
+             })}
+         }
+         else {
+            console.log('error')
+        }
+
+    }
+    xmlHttp.send(null);
+  }, i * 1000);
+    }
 });
 }, 4000);
