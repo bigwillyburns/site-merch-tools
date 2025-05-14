@@ -11,7 +11,7 @@
 // @updateURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version 2.18.3
+// @version 2.18.4
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
@@ -291,8 +291,8 @@ $(".product-tile").each(function() {
     }
 });
     var prodIDs_Chunks = chunkArray(prodIDs);
-    console.log(prodIDs_Chunks);
-    console.log(inLoc);
+   // console.log(prodIDs_Chunks);
+   //console.log(inLoc);
     for (let i = 0; i < prodIDs_Chunks.length; i++) {
         setTimeout(() => {
     //Start product loop
@@ -335,7 +335,7 @@ $(".product-tile").each(function() {
                 else{bg_color="darkseagreen"}
             $(inLoc[loopcount]).prepend('<div id="CC_'+records.sizes.productId+'_background" class="CC_Remove" style="position: absolute;width: 327px;height: 418px;z-index:10;margin: 0 0 0 0;background-color: '+bg_color+';opacity: .5;"></div><div id="CC_'+records.sizes.productId+'_container" class="CC_Remove" style="position: absolute;width: 327px;height: 418px;z-index:10;margin: -14px 0 0 0;"><div id="CC_'+records.sizes.productId+'" style="text-align: center;">'+records.sizes.productId+'</div><div id="CC_'+records.sizes.productId+'_percent" style="position: relative;float: right;font-size: xxx-large;-webkit-text-stroke-color: white;-webkit-text-stroke-width: 1px;margin: 0 5px 0 0;">'+inStockPercentage+'%</div></div>')
              loopcount++;
-             console.log(loopcount);
+             //console.log(loopcount);
               //end of loop for records
              })}
          }
