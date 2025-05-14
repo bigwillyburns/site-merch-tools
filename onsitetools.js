@@ -11,7 +11,7 @@
 // @updateURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version 2.18.4
+// @version 2.18.5
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
@@ -160,16 +160,18 @@ function chunkArray(array, chunkSize = 10) {
 setTimeout(function(){
 var TLTUIDloc = document.cookie.search("TLTUID");
 var TLTUID = document.cookie.substring(TLTUIDloc,39+TLTUIDloc);
-$('.sticky-promo').prepend('<div id="myTLTUID" style="position: absolute;padding: 0 123px 0 0;z-index:9999;font-size:11px;">'+TLTUID+'</div>');
-$('.utilities-list').prepend('<div id="showccbutton" style="padding: 0px 5px 0 0;z-index: 52;margin-top: 4px;"><img width="20px"src="https://visualsitemerch.web.app/images/smtools_icon.png"></div>');
+$('.sticky-promo').prepend('<div id="myTLTUID" style="cursor: pointer; position: absolute;padding: 0 123px 0 0;z-index:9999;font-size:11px;">'+TLTUID+'</div>');
+$('.utilities-list').prepend('<div id="showccbutton" style=" cursor: pointer; padding: 0px 5px 0 0;z-index: 52;margin-top: 4px;"><img width="20px"src="https://visualsitemerch.web.app/images/smtools_icon.png"></div>');
 $('#showccbutton').click(function(){run = 5;CCOnPage()});
-$('.utilities-list').prepend('<div id="productLokkup" style="padding: 0px 9px 0 0;z-index: 52;margin-top: 6px;"><img width="27px"src="https://visualsitemerch.web.app/images/Product_lookup.png"></div>');
-$('.utilities-list').prepend('<div id="invLookup" style="padding: 0px 9px 0 0;z-index: 52;margin-top: 6px; "><img width="22px"src="https://visualsitemerch.web.app/images/percent_icon.png"></div>');
+$('.utilities-list').prepend('<div id="productLokkup" style="cursor: pointer; padding: 0px 9px 0 0;z-index: 52;margin-top: 6px;"><img width="27px"src="https://visualsitemerch.web.app/images/Product_lookup.png"></div>');
+$('.utilities-list').prepend('<div id="invLookup" style="cursor: pointer; padding: 0px 9px 0 0;z-index: 52;margin-top: 6px; "><img width="22px"src="https://visualsitemerch.web.app/images/percent_icon.png"></div>');
 $('.utilities-list').prepend('<label style="margin: 7px 5px 0 0; position: relative; display: inline-block; width: 30px; height: 17px;"><input id="remove_color" type="checkbox" checked style="opacity: 0; width: 0; height: 0;"><span class="slider" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #182c51; transition: .4s; border-radius: 17px;"></span><span class="thumb" style="transform: translateX(13px);position: absolute; height: 13px; width: 13px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; z-index: 1;"></span></label>');
+$('.utilities-list').prepend('<div id="remove_all" style="cursor: pointer; padding: 0px 9px 0 0;z-index: 52;margin-top: 6px; ">Clear</div>');
+
+    //toggle code
 $('#remove_color').on('change', function () {
   const $track = $(this).siblings('.slider');
   const $thumb = $(this).siblings('.thumb');
-
   if (this.checked) {
     // Toggle "on" styles
     $track.css('background-color', '#182c51');
@@ -194,6 +196,7 @@ $('#remove_color').on('change', function () {
     });
   }
 });
+//#################################################################### Product Lookup ##############################################################################
 $('#productLokkup').click(function(){
     var stringOfProducts = prompt("Please paste in your CCs");
     stringOfProducts =  stringOfProducts.replace(/ /g,',');
@@ -254,6 +257,10 @@ $('#productLokkup').click(function(){
     }
     xmlHttp.send(null);
 });
+//  remove all things from the page.
+    $('#remove_all').click(function() {
+        $('.CC_Remove').remove();
+    });
 // ################################################################### NEW INVENTORY LOOKUP ########################################################################
 $('#invLookup').click(function(){
     // Get the Product IDs
@@ -333,7 +340,7 @@ $(".product-tile").each(function() {
                 if(inStockPercentage <= 33){bg_color="maroon"}
                 else if(inStockPercentage >= 34 && inStockPercentage <= 66){bg_color="goldenrod"}
                 else{bg_color="darkseagreen"}
-            $(inLoc[loopcount]).prepend('<div id="CC_'+records.sizes.productId+'_background" class="CC_Remove" style="position: absolute;width: 327px;height: 418px;z-index:10;margin: 0 0 0 0;background-color: '+bg_color+';opacity: .5;"></div><div id="CC_'+records.sizes.productId+'_container" class="CC_Remove" style="position: absolute;width: 327px;height: 418px;z-index:10;margin: -14px 0 0 0;"><div id="CC_'+records.sizes.productId+'" style="text-align: center;">'+records.sizes.productId+'</div><div id="CC_'+records.sizes.productId+'_percent" style="position: relative;float: right;font-size: xxx-large;-webkit-text-stroke-color: white;-webkit-text-stroke-width: 1px;margin: 0 5px 0 0;">'+inStockPercentage+'%</div></div>')
+            $(inLoc[loopcount]).prepend('<div id="CC_'+records.sizes.productId+'_background" class="CC_Remove" style="position: absolute;width: 327px;height: 418px;z-index:10;margin: 0 0 0 0;background-color: '+bg_color+';opacity: .5;"></div><div id="CC_'+records.sizes.productId+'_container" class="CC_Remove" style="position: absolute;width: 327px;height: 418px;z-index:10;margin: -14px 0 0 0;"><div id="CC_'+records.sizes.productId+'" style="text-align: center;">'+records.sizes.productId+'</div><div id="CC_'+records.sizes.productId+'_percent" style="position: relative;float: right;font-size: xxx-large;-webkit-text-stroke-color: white;-webkit-text-stroke-width: .75px;margin: 0 5px 0 0;">'+inStockPercentage+'%</div></div>')
              loopcount++;
              //console.log(loopcount);
               //end of loop for records
