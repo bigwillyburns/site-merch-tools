@@ -11,7 +11,7 @@
 // @updateURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @downloadURL https://raw.githubusercontent.com/bigwillyburns/site-merch-tools/main/onsitetools.js
 // @require http://code.jquery.com/jquery-3.3.1.min.js
-// @version 2.18.5
+// @version 2.18.6
 // ==/UserScript==
 var run = 6
 var allCCsUnique = new Array();
@@ -210,7 +210,7 @@ $('#productLokkup').click(function(){
         var data = JSON.parse(this.response)
         if (xmlHttp.status >= 200 && xmlHttp.status < 400) {
             //set product container
-            $('#main-header').prepend('<div id="product_grid"style="padding-bottom: 60px;top: 84px;position: absolute;width: 900px;background-color: whitesmoke;left: 0;right: 0;margin-left: auto;margin-right: auto;z-index: 53;height: 800px;overflow: hidden;overflow-y: auto;padding-top: 85px;"><div id="productGridHeader"style="position: absolute;width: 315px;font-size: xx-large;left: 0;right: 0;margin-left: auto;margin-right: auto;margin-top: -70px;">AEO Product Lookup</div><div id="CC_close" style="position: absolute;margin: -76px 0 0 7px;"><img src="https://visualsitemerch.web.app/images/close.png"</div></div>')
+            $('.sticky-promo').prepend('<div id="product_grid"style="padding-bottom: 60px;top: 247px;position: absolute;width: 900px;background-color: whitesmoke;left: 0;right: 0;margin-left: auto;margin-right: auto;z-index: 53;height: 800px;overflow: hidden;overflow-y: auto;padding-top: 85px;"><div id="productGridHeader"style="position: absolute;width: 315px;font-size: xx-large;left: 0;right: 0;margin-left: auto;margin-right: auto;margin-top: -70px;">AEO Product Lookup</div><div id="CC_close" style="position: absolute;margin: -76px 0 0 7px;"><img src="https://visualsitemerch.web.app/images/close.png"</div></div>')
             $('#CC_close').click(function(){$('#product_grid').remove()});
             var productsFound = new Array;
             //Looping through the Products
